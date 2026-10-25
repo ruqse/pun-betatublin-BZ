@@ -3,24 +3,21 @@
 Compare a pipeline run with the published intermediate files.
 
 Usage:
-    python3 pipeline/tests/compare_to_published.py <pipeline_outdir> [--published-vcf-dir DIR]
+    python3 pipeline/tests/compare_to_published.py <pipeline_outdir>
 
-Checks, per sample or gene (prints PASS/FAIL, exits 1 on any FAIL):
-  1. haplotypes   pipeline headers == data/haplotypes/{gene}_cluster_info.txt lines
-                  for that farm, and sequences identical (md5) to --published-hap-dir
-                  if given
+Checks, per sample or gene, against the published files in data/ (prints PASS/FAIL,
+exits 1 on any FAIL):
+  1. haplotypes   headers and sequences == data/haplotypes/Pun-bt-{gene}_{farm}_haplotypes.fasta
   2. matrices     identity_matrices/{gene}_matrix.txt == data/haplotypes/{gene}_matrix.txt
                   (same names, identities within 1e-6)
-  3. cds          translated haplotype CDS == ungapped protein in
-                  data/cds_alignments/Pun-bt-{gene}-align.fas (the curated alignment)
-  4. vcf          CHROM POS REF ALT of reads_vcf/*.filtered.vcf.gz == published VCF
-                  (only with --published-vcf-dir)
+  3. cds          CDS == data/haplotype_cds/ (nucleotides), and translated CDS == ungapped
+                  protein in data/cds_alignments/Pun-bt-{gene}-align.fas (curated alignment)
+  4. vcf          CHROM POS REF ALT == data/variants/vcf/
   5. chimera_qc   number of reads flagged chimeric by vsearch
 Standard library only.
 """
 import argparse
 import gzip
-import hashlib
 import re
 import sys
 from pathlib import Path
@@ -58,23 +55,16 @@ def cluster_key(header):
     return re.search(r"cluster-(\d+)_ReadCount-(\d+)", header.replace(" ", "_")).groups()
 
 
-def check_haplotypes(outdir, published_dir):
+def check_haplotypes(outdir):
     for gene in GENES:
-        expected = [l.rstrip("\n") for l in open(DATA / "haplotypes" / f"{gene}_cluster_info.txt") if l.startswith(">")]
         for farm in FARMS:
             path = outdir / "haplotypes" / f"Pun-bt-{gene}_{farm}.consensus_oriented_sequences.fasta"
             if not path.exists():
                 continue
             got = read_fasta(path)
-            want = [h[1:] for h in expected if f"-{farm}_" in h]
-            ok = sorted(got) == sorted(want)
-            detail = f"{len(got)} haplotypes" if ok else f"{len(got)} vs {len(want)} expected"
-            if ok and published_dir:
-                pub = read_fasta(Path(published_dir) / f"bt-{gene}_{farm}.consensus_oriented_sequences.fasta")
-                md5 = lambda d: sorted(hashlib.md5(s.upper().encode()).hexdigest() for s in d.values())
-                ok = md5(got) == md5(pub)
-                detail += ", sequences identical" if ok else ", SEQUENCES DIFFER"
-            report("haplotypes", f"Pun-bt-{gene}_{farm}", ok, detail)
+            want = read_fasta(DATA / "haplotypes" / f"Pun-bt-{gene}_{farm}_haplotypes.fasta")
+            ok = {k: v.upper() for k, v in got.items()} == {k: v.upper() for k, v in want.items()}
+            report("haplotypes", f"Pun-bt-{gene}_{farm}", ok, f"{len(got)} vs {len(want)} published")
 
 
 def read_matrix(path):
@@ -101,8 +91,12 @@ def check_cds(outdir):
             path = outdir / "haplotype_cds" / f"Pun-bt-{gene}_{farm}_CDS.fasta"
             if not path.exists():
                 continue
+            got = read_fasta(path)
+            want = read_fasta(DATA / "haplotype_cds" / f"Pun-bt-{gene}_{farm}_haplotype_CDS.fasta")
+            report("cds_nt", f"Pun-bt-{gene}_{farm}", {k: v.upper() for k, v in got.items()} == {k: v.upper() for k, v in want.items()},
+                   f"{len(got)} vs {len(want)} published")
             same, diff = 0, []
-            for name, seq in read_fasta(path).items():
+            for name, seq in got.items():
                 seq = seq.upper()
                 prot = "".join(CODON.get(seq[i:i + 3], "X") for i in range(0, len(seq) - 2, 3))
                 if curated.get((farm == "Resistant",) + cluster_key(name), "").rstrip("*") == prot.rstrip("*"):
@@ -122,17 +116,10 @@ def vcf_records(path):
         return sorted(tuple(l.split("\t")[i] for i in (0, 1, 3, 4)) for l in fh if not l.startswith("#"))
 
 
-def check_vcfs(outdir, published_dir):
+def check_vcfs(outdir):
     for path in sorted((outdir / "reads_vcf").glob("*.reads.filtered.vcf.gz")):
-        sample = path.name.split(".")[0]                     # Pun-bt-B_Resistant
-        pub_name = sample.replace("Pun-bt-", "bt-")
-        candidates = list(Path(published_dir).glob(f"{pub_name}.reads/{pub_name}.reads.filtered.vcf*"))
-        pub = [c for c in candidates if not c.name.endswith((".tbi", ".csi"))]
-        if not pub:
-            report("vcf", sample, False, "published VCF not found")
-            continue
-        got, want = vcf_records(path), vcf_records(pub[0])
-        report("vcf", sample, got == want, f"{len(got)} vs {len(want)} records")
+        got, want = vcf_records(path), vcf_records(DATA / "variants" / "vcf" / path.name)
+        report("vcf", path.name.split(".")[0], got == want, f"{len(got)} vs {len(want)} records")
 
 
 def check_chimeras(outdir):
@@ -144,14 +131,11 @@ def check_chimeras(outdir):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("outdir", type=Path)
-    ap.add_argument("--published-vcf-dir", help="directory holding bt-X_Farm.reads/ folders")
-    ap.add_argument("--published-hap-dir", help="directory holding bt-X_Farm.consensus_oriented_sequences.fasta")
     args = ap.parse_args()
-    check_haplotypes(args.outdir, args.published_hap_dir)
+    check_haplotypes(args.outdir)
     check_matrices(args.outdir)
     check_cds(args.outdir)
-    if args.published_vcf_dir:
-        check_vcfs(args.outdir, args.published_vcf_dir)
+    check_vcfs(args.outdir)
     check_chimeras(args.outdir)
     print(f"\n{len(failures)} failure(s)")
     sys.exit(1 if failures else 0)

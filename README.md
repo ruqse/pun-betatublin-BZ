@@ -15,15 +15,16 @@ All seven β-tubulin genes (Pun-bt-A to Pun-bt-G) were sequenced as long amplico
 | Data | Location |
 |---|---|
 | Per-gene normalised HiFi reads (14 runs, ERR15943804 to ERR15943817) | ENA [PRJEB102621](https://www.ebi.ac.uk/ena/browser/view/PRJEB102621) |
-| Haplotype consensus FASTA (243 haplotypes, 7 genes × 2 farms), haplotype CDS, filtered VCFs, VEP tables | Zenodo [10.5281/zenodo.XXXXXXX](https://doi.org/10.5281/zenodo.XXXXXXX) |
-| Inputs to the figure and table scripts | `data/` (see [`data/README.md`](data/README.md)) |
+| Haplotype consensus FASTA (243 haplotypes, 7 genes × 2 farms) | [`data/haplotypes/`](data/haplotypes/) |
+| Haplotype coding sequences, filtered VCFs, VEP tables | `data/haplotype_cds/`, `data/variants/` |
+| Archived snapshot of this repository | Zenodo [10.5281/zenodo.XXXXXXX](https://doi.org/10.5281/zenodo.XXXXXXX) |
 | Processing pipeline | `pipeline/` (see [`pipeline/README.md`](pipeline/README.md)) |
 
 ## Repository structure
 
 ```
-data/        inputs to scripts/ (haplotype headers and identity matrices, VEP tables,
-             CDS protein alignments, RNA-seq quantifications, references, gene map)
+data/        haplotype FASTA and CDS, identity matrices, VCFs and VEP tables, CDS protein
+             alignments, RNA-seq quantifications, references, gene map (see data/README.md)
 scripts/     R and bash code for every figure and table; qa/ holds the checks
 figures/     Fig1-Fig6 and S1_Fig-S8_Fig (TIFF for the journal, PNG previews)
 tables/      Table1, S1_Table, S2_Table, S3_Table (CSV)

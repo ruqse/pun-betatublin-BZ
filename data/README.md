@@ -9,6 +9,9 @@ The scripts produce derived files in `results/`, `figures/` and `tables/`. Nothi
 | `metadata/gene_map.tsv` | Gene names (Roose et al. 2021), WormBase ParaSite gene and transcript IDs, names in Martin et al. 2021, amplicon barcodes, primers and amplicon sizes | Curated. Gene ID, barcode and primers were cross-checked against the pipeline references and primer list, and against the A. lumbricoides ortholog table in `rnaseq/Betatublin_gene.txt` |
 | `metadata/samplesheet.csv` | 14 samples (7 genes × 2 farms) with FASTQ names, pbaa read cap and ENA run accession | Pipeline input |
 | `metadata/read_counts.tsv` | Reads and bases per FASTQ: demultiplexed, and normalised (as deposited in ENA) | `seqkit stats` v2.4.0 |
+| `haplotypes/Pun-bt-{A..G}_{Resistant,Susceptible}_haplotypes.fasta` | pbaa haplotype consensus sequences (243), oriented to the reference strand | `pipeline/` (PBAA → ORIENT) |
+| `haplotype_cds/Pun-bt-{A..G}_{Resistant,Susceptible}_haplotype_CDS.fasta` | Coding sequence of each haplotype | `pipeline/` (EXTRACT_CDS) |
+| `variants/vcf/Pun-bt-{A..G}_{Resistant,Susceptible}.reads.filtered.vcf.gz` | Read-based variants: freebayes pooled-continuous, `QUAL >= 50` | `pipeline/` (ALIGN → CALL → FILTER) |
 | `haplotypes/{A..G}_cluster_info.txt` | pbaa cluster headers for every haplotype (read count, cluster frequency, uchime score, ...) | `pipeline/` (PBAA → ORIENT) |
 | `haplotypes/{A..G}_matrix.txt` | Clustal Omega percent-identity matrices of each gene's haplotypes (both farms) | `pipeline/` (ALIGN_HAPLOTYPES → IDENTITY_MATRIX) |
 | `variants/reads_annot/*.reads.txt` | Ensembl VEP annotation of the read-based filtered VCFs | WormBase ParaSite VEP web tool (release 19, Ensembl 111) on `pipeline/` FILTER output. `pipeline/` ANNOTATE is an offline equivalent |
@@ -21,6 +24,24 @@ The scripts produce derived files in `results/`, `figures/` and `tables/`. Nothi
 | `rnaseq/TBZ_samples.txt`, `rnaseq/tissue_samples.txt` | Sample sheets for the two RNA-seq sets | As used in the original analysis |
 | `rnaseq/Betatublin_gene.txt`, `rnaseq/Betatublin_tx.txt` | β-tubulin gene and transcript IDs with A. suum and A. lumbricoides orthologs | Curated |
 | `rnaseq/tx2gene.tsv` | Transcript → gene map (WBPS17 GFF3) | `scripts/07a_make_tx2gene.R` |
+
+## Haplotype FASTA headers
+
+Each header carries the pbaa cluster metadata, for example:
+
+```
+>Pun-bt-B-Susceptible_cluster-0_ReadCount-20318 uchime_score:-1 ... cluster_freq:0.130699 diversity:0.00212244 avg_quality:48.2022 ... seq_length:7866 filters:none
+```
+
+| Field | Meaning |
+|---|---|
+| `ReadCount` | reads assigned to the cluster |
+| `cluster_freq` | the cluster's share of the sample's clustered reads |
+| `uchime_score` | pbaa chimera score; -1 means the cluster was not flagged |
+
+Five clusters have a positive `uchime_score`: Pun-bt-A Resistant cluster 12, and Pun-bt-C Susceptible clusters 31, 33, 34 and 35. They are kept in the FASTA files for completeness. The haplotype-diversity, meta-haplotype and G_ST analyses exclude them.
+
+In `haplotype_cds/` headers, a leading `_R_` marks a haplotype that MAFFT `--adjustdirection` reverse-complemented before extraction; every CDS is written in coding orientation.
 
 ## Steps outside the scripted pipeline
 

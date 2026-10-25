@@ -45,19 +45,17 @@ Other profiles:
 ## Checking a run against the published files
 
 ```bash
-python3 pipeline/tests/compare_to_published.py results_pipeline \
-    [--published-hap-dir DIR] [--published-vcf-dir DIR]
+python3 pipeline/tests/compare_to_published.py results_pipeline
 ```
 
-The script prints PASS or FAIL for each check:
+The script compares each output with the published files in `../data/` and prints PASS or FAIL:
 
 | Check | What must match |
 |---|---|
-| Haplotype headers | `../data/haplotypes/*_cluster_info.txt` |
+| Haplotypes (headers and sequences) | `../data/haplotypes/*_haplotypes.fasta` |
 | Identity matrices | `../data/haplotypes/*_matrix.txt` |
-| Translated CDS | the curated protein alignments in `../data/cds_alignments/` |
-| Haplotype sequences (optional) | published FASTA |
-| VCF records (optional) | published VCFs |
+| CDS | `../data/haplotype_cds/`, and their translations the curated protein alignments in `../data/cds_alignments/` |
+| VCF records | `../data/variants/vcf/` |
 
 It also reports how many reads vsearch flagged as chimeric.
 
