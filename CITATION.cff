@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this code or data, please cite the article below."
+title: "pun-betatublin-BZ: analysis code for β-tubulin haplotypes and benzimidazole resistance in Parascaris univalens"
+type: software
+license: MIT
+repository-code: "https://github.com/ruqse/pun-betatublin-BZ"
+authors:
+  - family-names: "Dube"
+    given-names: "Faruk"
+    affiliation: "Department of Medical Biochemistry and Microbiology, Uppsala University"
+  - family-names: "Tydén"
+    given-names: "Eva"
+    affiliation: "Department of Animal Biosciences, Swedish University of Agricultural Sciences"
+  - family-names: "Martin"
+    given-names: "Frida"
+    affiliation: "Department of Animal Biosciences, Swedish University of Agricultural Sciences"
+preferred-citation:
+  type: article
+  title: "Novel β-tubulin mutations and haplotype restructuring associated with benzimidazole resistance in Parascaris univalens"
+  journal: "PLOS ONE"
+  status: submitted
+  authors:
+    - family-names: "Tydén"
+      given-names: "Eva"
+    - family-names: "Martin"
+      given-names: "Frida"
+    - family-names: "Dube"
+      given-names: "Faruk"

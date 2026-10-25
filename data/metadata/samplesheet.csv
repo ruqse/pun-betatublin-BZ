@@ -1,0 +1,15 @@
+sample,gene,farm,fastq,max_reads_per_guide,ena_run
+Pun-bt-A_Resistant,A,Resistant,m64204e_231102_010409.bc1003--bc1093.hifi_reads.fastq.gz,54211,ERR15943804
+Pun-bt-A_Susceptible,A,Susceptible,m64204e_231102_010409.bc1003--bc1094.hifi_reads.fastq.gz,54211,ERR15943805
+Pun-bt-B_Resistant,B,Resistant,m64204e_231102_010409.bc1006--bc1093.hifi_reads.fastq.gz,155928,ERR15943806
+Pun-bt-B_Susceptible,B,Susceptible,m64204e_231102_010409.bc1006--bc1094.hifi_reads.fastq.gz,155928,ERR15943807
+Pun-bt-C_Resistant,C,Resistant,m64204e_231102_010409.bc1004--bc1093.hifi_reads.fastq.gz,13295,ERR15943808
+Pun-bt-C_Susceptible,C,Susceptible,m64204e_231102_010409.bc1004--bc1094.hifi_reads.fastq.gz,13295,ERR15943809
+Pun-bt-D_Resistant,D,Resistant,m64204e_231102_010409.bc1005--bc1093.hifi_reads.fastq.gz,138674,ERR15943810
+Pun-bt-D_Susceptible,D,Susceptible,m64204e_231102_010409.bc1005--bc1094.hifi_reads.fastq.gz,138674,ERR15943811
+Pun-bt-E_Resistant,E,Resistant,m64204e_231102_010409.bc1002--bc1093.hifi_reads.fastq.gz,105378,ERR15943812
+Pun-bt-E_Susceptible,E,Susceptible,m64204e_231102_010409.bc1002--bc1094.hifi_reads.fastq.gz,105378,ERR15943813
+Pun-bt-F_Resistant,F,Resistant,m64204e_231102_010409.bc1001--bc1093.hifi_reads.fastq.gz,63904,ERR15943814
+Pun-bt-F_Susceptible,F,Susceptible,m64204e_231102_010409.bc1001--bc1094.hifi_reads.fastq.gz,63904,ERR15943815
+Pun-bt-G_Resistant,G,Resistant,m64204e_231102_010409.bc1007--bc1093.hifi_reads.fastq.gz,128506,ERR15943816
+Pun-bt-G_Susceptible,G,Susceptible,m64204e_231102_010409.bc1007--bc1094.hifi_reads.fastq.gz,128506,ERR15943817

@@ -1,0 +1,15 @@
+sample	gene	farm	reads_demultiplexed	bases_demultiplexed	reads_normalised
+Pun-bt-A_Resistant	A	Resistant	54211	356389967	54211
+Pun-bt-A_Susceptible	A	Susceptible	230851	1515060867	54211
+Pun-bt-B_Resistant	B	Resistant	155928	1243235567	155928
+Pun-bt-B_Susceptible	B	Susceptible	262946	2089146637	155736
+Pun-bt-C_Resistant	C	Resistant	13295	110673498	13295
+Pun-bt-C_Susceptible	C	Susceptible	162711	1352487788	13295
+Pun-bt-D_Resistant	D	Resistant	138674	1148580786	138674
+Pun-bt-D_Susceptible	D	Susceptible	269528	2231412006	138362
+Pun-bt-E_Resistant	E	Resistant	105378	830980996	105378
+Pun-bt-E_Susceptible	E	Susceptible	320220	2523575353	105376
+Pun-bt-F_Resistant	F	Resistant	63904	703050398	63904
+Pun-bt-F_Susceptible	F	Susceptible	191258	2102065487	63881
+Pun-bt-G_Resistant	G	Resistant	128506	1289707567	128506
+Pun-bt-G_Susceptible	G	Susceptible	183760	1845063861	128440

@@ -1,0 +1,2 @@
+demultiplexed_reads,per_barcode_min,per_barcode_max,per_barcode_mean,per_barcode_sd,susceptible_over_resistant,normalised_median,normalised_mean,normalised_sd
+2281170,13295,320220,162940.7142857143,88190.08313377903,2.456862899608423,105378,94270.85714285714,51885.58501943987

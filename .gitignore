@@ -1,0 +1,26 @@
+# R
+.Rhistory
+.RData
+.Rproj.user/
+Rplots.pdf
+
+# Nextflow
+work/
+.nextflow/
+.nextflow.log*
+results_pipeline/
+singularity_cache/
+report.html
+timeline.html
+trace.txt
+
+# Large references rebuilt by pipeline/bin/prepare_reference.sh
+data/reference/Betatublin_scaffolds_genomic.fa*
+
+# Run logs
+results/logs/
+
+# OS / editors
+.DS_Store
+*~
+*.swp

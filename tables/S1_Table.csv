@@ -1,0 +1,8 @@
+gene,reads_demultiplexed_Resistant,reads_demultiplexed_Susceptible,reads_normalised_Resistant,reads_normalised_Susceptible,reads_normalised_lower_farm,fold_reduction_higher_farm
+Pun-bt-A,54211,230851,54211,54211,54211,4.26
+Pun-bt-B,155928,262946,155928,155736,155928,1.69
+Pun-bt-C,13295,162711,13295,13295,13295,12.24
+Pun-bt-D,138674,269528,138674,138362,138674,1.94
+Pun-bt-E,105378,320220,105378,105376,105378,3.04
+Pun-bt-F,63904,191258,63904,63881,63904,2.99
+Pun-bt-G,128506,183760,128506,128440,128506,1.43

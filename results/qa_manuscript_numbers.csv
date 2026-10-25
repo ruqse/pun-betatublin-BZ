@@ -1,0 +1,55 @@
+status,claim,expected,observed
+PASS,n95 Pun-bt-A Farm-R vs Farm-S,9/13,9/13
+PASS,n95 Pun-bt-B Farm-R vs Farm-S,2/19,2/19
+PASS,n95 Pun-bt-C Farm-R vs Farm-S,12/27,12/27
+PASS,n95 Pun-bt-D Farm-R vs Farm-S,18/21,18/21
+PASS,Dominant haplotype % Pun-bt-B Farm-R vs Farm-S,95/13,95/13
+PASS,Dominant haplotype % Pun-bt-C Farm-R vs Farm-S,25/8,25/8
+PASS,Dominant haplotype % Pun-bt-F Farm-R vs Farm-S,52/26,52/26
+PASS,Dominant haplotype % Pun-bt-G Farm-R vs Farm-S,46/37,46/37
+PASS,Dominant haplotype % Pun-bt-A Farm-R vs Farm-S,39/31,39/31
+PASS,PCA Pun-bt-B PC1/PC2 %,96/3.7,96/3.7
+PASS,PCA Pun-bt-C PC1/PC2 %,74.3/11.3,74.3/11.3
+PASS,Pun-bt-B groups and silhouette threshold,2/1.4,2/1.4
+PASS,Pun-bt-C groups and silhouette threshold,4/0.8,4/0.8
+PASS,Pun-bt-B Group-1 fold enrichment,4.2,4.2
+PASS,Pun-bt-C Group-1 / Group-3 fold enrichment,4.3/2.1,4.3/2.1
+PASS,Pun-bt-C Group-2 fold depletion,3.3,3.3
+PASS,Pun-bt-E Group-2 fold depletion,30,30
+PASS,Pun-bt-D Group-7 enrichment / Group-4 depletion,4.6/3.6,4.6/3.6
+PASS,"Groups significant (FDR < 0.01, FC >= 2) or farm-exclusive",15,15
+PASS,Pun-bt-B Farm-S Group-2 / Group-1 %,76/24,76/24
+PASS,Pun-bt-C Farm-R Group-3 / Group-1 %,46.5/24.8,46.5/24.8
+PASS,Pun-bt-C Farm-S Group-2 / Group-4 %,41.4/30.9,41.4/30.9
+PASS,pi Pun-bt-B Group-1 Farm-R,0.01,0.01
+FAIL,pi Pun-bt-B Group-2 Farm-S,0.035,0.034
+PASS,pi Pun-bt-B Group-1 Farm-S,0.005,0.005
+FAIL,Pun-bt-B Farm-S pi Group-2 / Group-1 (7-fold),7,6
+FAIL,pi Pun-bt-C Group-3 Farm-R / Farm-S,0.046/0.009,0.047/0.009
+PASS,pi Pun-bt-C Group-1 Farm-R / Farm-S,0.001/0.033,0.001/0.033
+PASS,V315M % Farm-R / Farm-S,94.96/0,94.96/0
+PASS,V315M OR lower 95% bound > 8400,TRUE,TRUE
+PASS,F167S % Farm-R / Farm-S,5.04/0,5.04/0
+PASS,F167S OR lower 95% bound > 2100,TRUE,TRUE
+PASS,Q447P % Farm-R / Farm-S,28.02/8.99,28.02/8.99
+PASS,Q447P odds ratio,3.94,3.94
+PASS,D328T-Q329R-M330* % Farm-S,10.99/10.99/10.99,10.99/10.99/10.99
+PASS,No canonical F167Y/E198A/F200Y,FALSE,FALSE
+PASS,No differential substitutions at Pun-bt-A or Pun-bt-E,FALSE,FALSE
+PASS,G_ST per gene A-G,0.098/0.322/0.051/0.037/0.146/0.136/0.137,0.098/0.322/0.051/0.037/0.146/0.136/0.137
+PASS,G_ST Pun-bt-B / highest non-candidate,2.2,2.2
+PASS,H_S Pun-bt-C,0.96,0.96
+PASS,Assembly scaffolds / total Mb / N50 Mb / L50,1274/253.4/1.83/44,1274/253.4/1.83/44
+FAIL,Pun-bt-B scaffold (manuscript: PgB10),PgB10,PgR003
+PASS,Pun-bt-C scaffold,PgE153,PgE153
+PASS,"Anterior: A highest, B second, G lowest",Pun-bt-A/Pun-bt-B/Pun-bt-G,Pun-bt-A/Pun-bt-B/Pun-bt-G
+FAIL,"Intestine: A highest, B second, C third, G lowest",Pun-bt-A/Pun-bt-B/Pun-bt-C/Pun-bt-G,Pun-bt-A/Pun-bt-B/Pun-bt-C/Pun-bt-E
+PASS,"Significant TBZ responses (gene, contrast)",Pun-bt-C concentration_TBZ5_vs_CD/Pun-bt-E concentration_TBZ9_vs_CD,Pun-bt-C concentration_TBZ5_vs_CD/Pun-bt-E concentration_TBZ9_vs_CD
+PASS,Pun-bt-E fold change at 1e-9 M,2,2
+PASS,Pun-bt-C fold reduction at 1e-5 M,92,92
+PASS,Demultiplexed reads (14 barcodes),2281170,2281170
+PASS,Per-barcode range,13295/320220,13295/320220
+PASS,Per-barcode mean / SD,162941/88190,162941/88190
+PASS,Susceptible / Resistant mean depth (2.5-fold),2.5,2.5
+PASS,Post-normalisation range,13295/155928,13295/155928
+FAIL,Post-normalisation median / mean / SD,105378/94271/47582,105378/94271/51886
