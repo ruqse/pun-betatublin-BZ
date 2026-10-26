@@ -41,7 +41,7 @@ Each header carries the pbaa cluster metadata, for example:
 
 Five clusters have a positive `uchime_score`: Pun-bt-A Resistant cluster 12, and Pun-bt-C Susceptible clusters 31, 33, 34 and 35. They are kept in the FASTA files for completeness. The haplotype-diversity, meta-haplotype and G_ST analyses exclude them.
 
-In `haplotype_cds/` headers, a leading `_R_` marks a haplotype that MAFFT `--adjustdirection` reverse-complemented before extraction; every CDS is written in coding orientation.
+Every CDS in `haplotype_cds/` is written in coding orientation.
 
 ## Steps outside the scripted pipeline
 

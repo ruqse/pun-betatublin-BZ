@@ -11,13 +11,15 @@ process INDEX_FASTQ {
     tuple val(meta), path(fastq), path(guide)
 
     output:
-    tuple val(meta), path("${meta.id}.fastq.gz"), path("${meta.id}.fastq.gz.fai"), path("${meta.id}.fastq.gz.gzi"), path(guide), path("${guide}.fai"), emit: fastq
+    tuple val(meta), path("idx/${fastq.name}"), path("idx/${fastq.name}.fai"), path("idx/${fastq.name}.gzi"), path(guide), path("${guide}.fai"), emit: fastq
 
     script:
-    // pbaa needs a bgzip-indexed FASTQ and an indexed guide.
+    // pbaa needs a bgzip-indexed FASTQ and an indexed guide; the original file name is kept
+    // because pbaa writes it into cluster names and uchime parent fields.
     """
-    gunzip -c ${fastq} | bgzip -i -I ${meta.id}.fastq.gz.gzi > ${meta.id}.fastq.gz
-    samtools fqidx ${meta.id}.fastq.gz
+    mkdir idx
+    gunzip -c ${fastq} | bgzip -i -I idx/${fastq.name}.gzi > idx/${fastq.name}
+    samtools fqidx idx/${fastq.name}
     samtools faidx ${guide}
     """
 }
@@ -111,7 +113,7 @@ process EXTRACT_CDS {
     cat ${cds_ref} ${passed} > input.fasta
     mafft --quiet --adjustdirection input.fasta > aligned.fasta
     extract_cds.awk aligned.fasta \
-        | sed -E 's/^>(_R_)?sample-[^_]+_guide-[^_]+_/>\1Pun-bt-${meta.gene}-${meta.farm}_/' \
+        | sed -E 's/^>(_R_)?sample-[^_]+_guide-[^_]+_/>Pun-bt-${meta.gene}-${meta.farm}_/' \
         > ${meta.id}_CDS.fasta
     test "\$(grep -c '^>' ${meta.id}_CDS.fasta)" -eq "\$(grep -c '^>' ${passed})"
     """
