@@ -59,6 +59,24 @@ The script compares each output with the published files in `../data/` and print
 
 It also reports how many reads vsearch flagged as chimeric.
 
+## Verification
+
+The pipeline was run end to end on Pun-bt-C (both farms, `-profile test`) and checked with `tests/compare_to_published.py`:
+
+| Output | Result |
+|---|---|
+| VCF records | identical (397 Resistant, 125 Susceptible) |
+| Haplotype sequences | identical (15 Resistant, 36 Susceptible) |
+| Identity matrix | identical (51 × 51) |
+| CDS | identical (51 of 51) |
+| vsearch read screen | 0 reads flagged, as in the published QC |
+
+freebayes 1.3.2 and pbaa 1.0.3 therefore reproduce the published files.
+
+The other six genes were not re-run. Their published job scripts run the same commands as Pun-bt-C; only the gene, farm, FASTQ, reference and read cap differ. With those fields masked, all 14 read-based scripts are identical, and so are the pbaa scripts for A, B, C, F and G. The exceptions are later edits to the scripts as they now stand:
+- **Pun-bt-D and Pun-bt-E:** the pbaa scripts were edited on 2025-04-05 to use the six-scaffold file as guide and to write to a new directory. The published D and E outputs are dated 2025-03-29 and 2025-03-30, and the new directory was never created, so the script version that produced them is not on disk. The pipeline assumes it used the gene-region guide, like the other genes.
+- **Pun-bt-A Resistant:** edited on 2025-08-21 in its haplotype-based VCF step only. No analysis script reads those VCFs, and the pipeline does not produce them.
+
 ## Notes
 
 - **Chimera screens.** The read-level vsearch screen runs on reads without abundance annotations, as the published job did. The cluster-level chimera filter that drove downstream exclusion is pbaa's uchime score.
