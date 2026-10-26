@@ -80,7 +80,7 @@ Two helpers need the WormBase ParaSite GFF3 and are not part of `run_all.sh`; th
 - **haplotypes:** pbaa → orientation → CDS extraction → MAFFT and Clustal Omega identity matrices;
 - **QC:** vsearch.
 
-`pipeline/tests/compare_to_published.py` checks a run against the published files. A run on Pun-bt-C reproduces the published VCFs, haplotypes, identity matrix and CDS exactly; see the Verification section of [`pipeline/README.md`](pipeline/README.md).
+`pipeline/tests/compare_to_published.py` checks a run against the published files. Re-runs reproduce the published VCFs exactly for Pun-bt-A and Pun-bt-C, and the haplotypes, identity matrix and CDS exactly for Pun-bt-C; see the Verification section of [`pipeline/README.md`](pipeline/README.md).
 
 ## Quality control
 
