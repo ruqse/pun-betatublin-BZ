@@ -4,6 +4,7 @@ title: "pun-betatublin-BZ: analysis code for β-tubulin haplotypes and benzimida
 type: software
 license: MIT
 repository-code: "https://github.com/ruqse/pun-betatublin-BZ"
+doi: "10.5281/zenodo.23667831"
 authors:
   - family-names: "Dube"
     given-names: "Faruk"

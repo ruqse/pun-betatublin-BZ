@@ -17,7 +17,7 @@ All seven β-tubulin genes (Pun-bt-A to Pun-bt-G) were sequenced as long amplico
 | Per-gene normalised HiFi reads (14 runs, ERR15943804 to ERR15943817) | ENA [PRJEB102621](https://www.ebi.ac.uk/ena/browser/view/PRJEB102621) |
 | Haplotype consensus FASTA (243 haplotypes, 7 genes × 2 farms) | [`data/haplotypes/`](data/haplotypes/) |
 | Haplotype coding sequences, filtered VCFs, VEP tables | `data/haplotype_cds/`, `data/variants/` |
-| Archived snapshot of this repository | Zenodo [10.5281/zenodo.XXXXXXX](https://doi.org/10.5281/zenodo.XXXXXXX) |
+| Archived snapshot of this repository | Zenodo [10.5281/zenodo.23667831](https://doi.org/10.5281/zenodo.23667831) |
 | Processing pipeline | `pipeline/` (see [`pipeline/README.md`](pipeline/README.md)) |
 
 ## Repository structure
