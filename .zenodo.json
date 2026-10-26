@@ -1,0 +1,25 @@
+{
+  "title": "pun-betatublin-BZ: analysis code for β-tubulin haplotypes and benzimidazole resistance in Parascaris univalens",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "mit",
+  "creators": [
+    {"name": "Dube, Faruk", "affiliation": "Department of Medical Biochemistry and Microbiology, Uppsala University"},
+    {"name": "Tydén, Eva", "affiliation": "Department of Animal Biosciences, Swedish University of Agricultural Sciences"},
+    {"name": "Martin, Frida", "affiliation": "Department of Animal Biosciences, Swedish University of Agricultural Sciences"}
+  ],
+  "keywords": [
+    "Parascaris univalens",
+    "beta-tubulin",
+    "benzimidazole resistance",
+    "anthelmintic resistance",
+    "PacBio HiFi",
+    "amplicon sequencing",
+    "haplotypes",
+    "Nextflow"
+  ],
+  "related_identifiers": [
+    {"identifier": "https://www.ebi.ac.uk/ena/browser/view/PRJEB102621", "relation": "references", "resource_type": "dataset"},
+    {"identifier": "https://github.com/ruqse/pun-betatublin-BZ", "relation": "isSupplementTo", "resource_type": "software"}
+  ]
+}
