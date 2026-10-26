@@ -107,6 +107,7 @@ process EXTRACT_CDS {
 
     script:
     """
+    export TMPDIR=\$PWD   # MAFFT needs a writable temp dir inside the container
     cat ${cds_ref} ${passed} > input.fasta
     mafft --quiet --adjustdirection input.fasta > aligned.fasta
     extract_cds.awk aligned.fasta \
@@ -130,6 +131,7 @@ process ALIGN_HAPLOTYPES {
 
     script:
     """
+    export TMPDIR=\$PWD
     cat ${resistant} ${susceptible} > Pun-bt-${gene}_cluster.fasta
     mafft --thread ${task.cpus} --anysymbol --bl 62 --op 1.53 --ep 0.123 --reorder \\
         --retree 2 --treeout --maxiterate 2 --nuc Pun-bt-${gene}_cluster.fasta \\

@@ -3,11 +3,12 @@
 # For each SAM record (coordinate order), print the haplotype; reverse-complement
 # it when it maps to the minus strand (flag 16). Mirrors the published job, which
 # looped over `samtools view` output of the sorted BAM.
-function revcomp(s,   i, c, out) {
+function revcomp(s,   i, c, r, out) {
     out = ""
     for (i = length(s); i > 0; i--) {
         c = substr(s, i, 1)
-        out = out (c in comp ? comp[c] : c)
+        r = (c in comp) ? comp[c] : c
+        out = out r
     }
     return out
 }
